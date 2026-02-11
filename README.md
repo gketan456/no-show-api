@@ -1,104 +1,102 @@
 🏥 Healthcare Appointment No-Show Prediction System
-1️⃣ Problem Statement
+1️⃣ Problem Statement:
 
 Healthcare providers lose significant revenue and operational efficiency when patients miss scheduled appointments (“no-shows”).
 
 Missed appointments result in:
 
-Wasted clinician time
+    Wasted clinician time
 
-Increased operational costs
+    Increased operational costs
 
-Reduced patient access
+    Reduced patient access
 
-Lower clinic utilization
+    Lower clinic utilization
 
 The goal of this project is to build an end-to-end machine learning system that predicts the probability that a patient will miss a scheduled appointment, allowing hospitals to proactively intervene.
 
 If the predicted risk exceeds a defined threshold (0.7), the patient is flagged for targeted intervention.
 
-2️⃣ Dataset Description
+2️⃣ Dataset Description:
 
-Source: Kaggle – Medical Appointment No Shows Dataset
+    Source: Kaggle – Medical Appointment No Shows Dataset
 
-Records: 110,527 appointments
+    Records: 110,527 appointments
 
-Target Variable: No-show (Yes / No)
+    Target Variable: No-show (Yes / No)
 
-Available Features
+    Available Features
 
-Patient demographics (Age, Gender)
+    Patient demographics (Age, Gender)
 
-Social support indicator (Scholarship)
+    Social support indicator (Scholarship)
 
-Chronic condition flags (Hypertension, Diabetes, Alcoholism)
+    Chronic condition flags (Hypertension, Diabetes, Alcoholism)
 
-Disability indicator (Handcap)
+    Disability indicator (Handcap)
 
-SMS reminder status
+    SMS reminder status
 
-Appointment scheduling timestamps
+    Appointment scheduling timestamps
 
-Neighborhood information
+    Neighborhood information
 
-The dataset reflects real-world hospital scheduling data and simulates operational healthcare analytics.
+    The dataset reflects real-world hospital scheduling data and simulates operational healthcare analytics.
 
-3️⃣ Feature Engineering Logic
+3️⃣ Feature Engineering Logic:
 
 To simulate real hospital operations, additional meaningful features were engineered:
 
-⏳ Temporal Features
+⏳ Temporal Features;
 
-lead_time_days = AppointmentDay − ScheduledDay
-(Captures how far in advance the appointment was booked)
+    lead_time_days = AppointmentDay − ScheduledDay (Captures how far in advance the appointment was booked)
 
-appointment_dayofweek
+    appointment_dayofweek
 
-appointment_weekend
+    appointment_weekend
 
-👥 Demographic Features
+👥 Demographic Features:
 
-Age grouped into categories
+    Age grouped into categories
 
-One-hot encoded age groups
+    One-hot encoded age groups
 
-📍 Geographic Feature
+📍 Geographic Feature:
 
-neighbourhood_freq
-Frequency encoding of neighborhood (avoids high-dimensional one-hot encoding)
+    neighbourhood_freq  Frequency encoding of neighborhood (avoids high-dimensional one-hot encoding)
 
-📩 Behavioral Indicators
+📩 Behavioral Indicators:
 
-SMS reminder effect (SMS_received)
+    SMS reminder effect (SMS_received)
 
-Chronic condition indicators
+    Chronic condition indicators
 
-Scholarship status
+    Scholarship status
 
 These features were designed to reflect realistic healthcare behavior patterns rather than relying solely on raw fields.
 
-4️⃣ Model Results
-Model Used
+4️⃣ Model Results:
+    Model Used
 
-Logistic Regression
+    Logistic Regression
 
-class_weight="balanced" to handle class imbalance
+    class_weight="balanced" to handle class imbalance
 
-The dataset is imbalanced (~20% no-shows), so class weighting was applied to improve recall for the minority class.
+    The dataset is imbalanced (~20% no-shows), so class weighting was applied to improve recall for the minority class.
 
-Evaluation Metrics (Test Set)
+Evaluation Metrics (Test Set):
 
-AUC-ROC: ~0.66
+    AUC-ROC: ~0.66
 
-Accuracy: ~0.66
+    Accuracy: ~0.66
 
-Recall (No-show class): ~0.57
+    Recall (No-show class): ~0.57
 
-Precision (No-show class): ~0.31
+    Precision (No-show class): ~0.31
 
 The model provides moderate predictive power while remaining interpretable — important in healthcare environments.
 
-5️⃣ API Usage Instructions
+5️⃣ API Usage Instructions:
 
 The trained model is deployed as a FastAPI application and containerized using Docker.
 
